@@ -2,10 +2,17 @@ import model
 from model.pages import practice_form
 from model.pages.practice_form import PracticeForm
 from model.data.student import Student
+import allure
+from allure_commons.types import Severity
+from model.utils.attach import add_screenshot,add_logs,add_html
 
 form = PracticeForm()
 
 
+@allure.title('Successful registration')
+@allure.tag('user', 'ui', 'A.Chizh')
+@allure.severity(Severity.CRITICAL)
+@allure.id('1')
 def test_form_filling():
     andrew = Student(
         first_name='Andrew',
@@ -21,6 +28,11 @@ def test_form_filling():
         state='Uttar Pradesh',
         city='Merrut'
     )
-    form.open()
-    form.filling(andrew).click_submit()
-    form.assert_information(andrew).click_close_button()
+    with allure.step('Open page'):
+        form.open()
+    with allure.step('Fill form'):
+        form.filling(andrew).click_submit()
+    with allure.step('Assert info'):
+        form.assert_information(andrew).click_close_button()
+
+
