@@ -1,3 +1,5 @@
+import time
+
 import model
 from selene.support.shared import browser
 from model.pages import practice_form
@@ -36,7 +38,8 @@ def test_form_filling(open_browser):
     with allure.step('Fill form'):
         form.filling(andrew).click_submit()
     with allure.step('Assert info'):
-        form.assert_information(andrew).click_close_button()
+        form.assert_information(andrew)
+        time.sleep(1)
         attach.add_html(browser)
         attach.add_screenshot(browser)
         attach.add_logs(browser)
