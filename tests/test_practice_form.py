@@ -1,9 +1,11 @@
 import model
+from selene.support.shared import browser
 from model.pages import practice_form
 from model.pages.practice_form import PracticeForm
 from model.data.student import Student
 import allure
 from allure_commons.types import Severity
+from model.utils import attach
 
 
 form = PracticeForm()
@@ -35,5 +37,10 @@ def test_form_filling(open_browser):
         form.filling(andrew).click_submit()
     with allure.step('Assert info'):
         form.assert_information(andrew).click_close_button()
+        attach.add_html(browser)
+        attach.add_screenshot(browser)
+        attach.add_logs(browser)
+        attach.add_video(browser)
+        browser.quit()
 
 
