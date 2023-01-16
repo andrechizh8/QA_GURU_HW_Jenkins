@@ -40,10 +40,10 @@ def test_form_filling():
     with allure.step('Assert info'):
         form.assert_information(andrew)
         time.sleep(1)
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    attach.add_video(browser)
-    browser.quit()
+    # attach.add_html(browser)
+    # attach.add_screenshot(browser)
+    # attach.add_logs(browser)
+    # attach.add_video(browser)
+    # browser.quit()
 
 
