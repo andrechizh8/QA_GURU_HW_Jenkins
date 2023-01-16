@@ -4,7 +4,7 @@ from model.pages.practice_form import PracticeForm
 from model.data.student import Student
 import allure
 from allure_commons.types import Severity
-from model.utils.attach import add_screenshot,add_logs,add_html
+
 
 form = PracticeForm()
 
@@ -13,7 +13,7 @@ form = PracticeForm()
 @allure.tag('user', 'ui', 'A.Chizh')
 @allure.severity(Severity.CRITICAL)
 @allure.id('1')
-def test_form_filling():
+def test_form_filling(setup_chrome):
     andrew = Student(
         first_name='Andrew',
         last_name='Chizh',
@@ -28,6 +28,7 @@ def test_form_filling():
         state='Uttar Pradesh',
         city='Merrut'
     )
+    browser = setup_chrome
     with allure.step('Open page'):
         form.open()
     with allure.step('Fill form'):
