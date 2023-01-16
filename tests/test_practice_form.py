@@ -13,7 +13,7 @@ form = PracticeForm()
 @allure.tag('user', 'ui', 'A.Chizh')
 @allure.severity(Severity.CRITICAL)
 @allure.id('1')
-def test_form_filling(setup_chrome):
+def test_form_filling(open_browser):
     andrew = Student(
         first_name='Andrew',
         last_name='Chizh',
@@ -28,7 +28,7 @@ def test_form_filling(setup_chrome):
         state='Uttar Pradesh',
         city='Merrut'
     )
-    browser = setup_chrome
+
     with allure.step('Open page'):
         form.open()
     with allure.step('Fill form'):

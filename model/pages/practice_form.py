@@ -24,7 +24,7 @@ class PracticeForm:
         return self
 
     def set_gender(self, student):
-        gender = RadioButtons(browser.all("[name='gender']")).set_radio(student.gender)
+        RadioButtons(browser.all("[name='gender']")).set_radio(student.gender)
         return self
 
     def fill_phone_number(self, student):
@@ -32,7 +32,7 @@ class PracticeForm:
         return self
 
     def set_hobby(self, student):
-        hobby = Checkboxes(browser.all("[for^='hobbies-checkbox']")).set_checkbox(student.hobby)
+        Checkboxes(browser.all("[for^='hobbies-checkbox']")).set_checkbox(student.hobby)
         return self
 
     def set_photo(self):
@@ -53,11 +53,11 @@ class PracticeForm:
         return self
 
     def set_state(self, student):
-        state = DropdownButtons(browser.element('#state')).select_dropdown(student.state)
+        DropdownButtons(browser.element('#state')).select_dropdown(student.state)
         return self
 
     def set_city(self, student):
-        city = DropdownButtons(browser.element('#city')).select_dropdown(student.city)
+        DropdownButtons(browser.element('#city')).select_dropdown(student.city)
         return self
 
     def click_submit(self):
