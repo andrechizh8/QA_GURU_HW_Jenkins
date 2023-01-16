@@ -17,7 +17,7 @@ form = PracticeForm()
 @allure.tag('user', 'ui', 'A.Chizh')
 @allure.severity(Severity.CRITICAL)
 @allure.id('1')
-def test_form_filling(open_browser):
+def test_form_filling():
     andrew = Student(
         first_name='Andrew',
         last_name='Chizh',
@@ -40,10 +40,10 @@ def test_form_filling(open_browser):
     with allure.step('Assert info'):
         form.assert_information(andrew)
         time.sleep(1)
-        attach.add_html(browser)
-        attach.add_screenshot(browser)
-        attach.add_logs(browser)
-        attach.add_video(browser)
-        browser.quit()
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    attach.add_video(browser)
+    browser.quit()
 
 
