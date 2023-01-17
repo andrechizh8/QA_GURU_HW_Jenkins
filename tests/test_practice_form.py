@@ -1,5 +1,4 @@
 import time
-
 from model.pages.practice_form import PracticeForm
 from model.data.student import Student
 import allure
@@ -12,7 +11,7 @@ form = PracticeForm()
 @allure.tag('user', 'ui', 'A.Chizh')
 @allure.severity(Severity.CRITICAL)
 @allure.id('1')
-def test_form_filling(setup_browser):
+def test_form_filling():
     andrew = Student(
         first_name='Andrew',
         last_name='Chizh',
