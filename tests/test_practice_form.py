@@ -1,15 +1,7 @@
-import time
-import model
-from selene.support.shared import browser
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from model.pages import practice_form
 from model.pages.practice_form import PracticeForm
 from model.data.student import Student
 import allure
 from allure_commons.types import Severity
-from model.utils import attach
-
 
 form = PracticeForm()
 
@@ -18,7 +10,7 @@ form = PracticeForm()
 @allure.tag('user', 'ui', 'A.Chizh')
 @allure.severity(Severity.CRITICAL)
 @allure.id('1')
-def test_form_filling():
+def test_form_filling(browser_config):
     andrew = Student(
         first_name='Andrew',
         last_name='Chizh',
@@ -33,22 +25,6 @@ def test_form_filling():
         state='Uttar Pradesh',
         city='Merrut'
     )
-    options = Options()
-    selenoid_capabilities = {
-        "browserName": "chrome",
-        "browserVersion": "100.0",
-        "selenoid:options": {
-            "enableVNC": True,
-            "enableVideo": True
-        }
-    }
-    options.capabilities.update(selenoid_capabilities)
-    driver = webdriver.Remote(
-        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        options=options
-    )
-    
-    browser.config.driver = driver
 
     with allure.step('Open page'):
         form.open()
@@ -56,10 +32,3 @@ def test_form_filling():
         form.filling(andrew).click_submit()
     with allure.step('Assert info'):
         form.assert_information(andrew)
-    attach.add_video(browser)
-    attach.add_html(browser)
-    attach.add_screenshot(browser)
-    attach.add_logs(browser)
-    browser.quit()
-
-

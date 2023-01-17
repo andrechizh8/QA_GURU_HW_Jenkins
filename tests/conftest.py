@@ -1,50 +1,36 @@
 import pytest
 from selene.support.shared import browser
-from model.utils import attach
-from selene import Browser, Config
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selene import Browser, Config
+from model.utils import attach
 
 
-# def pytest_addoption(parser):
-#     parser.addoption(
-#         '--browser_version',
-#         default='100.0'
-#     )
-
-
-@pytest.fixture(autouse=True)
-def open_browser():
+@pytest.fixture(scope='function')
+def browser_config():
     browser.config.base_url = 'https://demoqa.com'
     browser.config.window_height = 1080
     browser.config.window_width = 1920
+    options = Options()
+    selenoid_capabilities = {
+        "browserName": "chrome",
+        "browserVersion": "100.0",
+        "selenoid:options": {
+            "enableVNC": True,
+            "enableVideo": True
+        }
+    }
+    options.capabilities.update(selenoid_capabilities)
+    driver = webdriver.Remote(
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        options=options
+    )
 
+    browser.config.driver = driver
 
-# @pytest.fixture(scope='function')
-# def setup_chrome(request):
-#     browser_version = request.config.getoption('--browser_version')
-#     browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
-#     options = Options()
-#     selenoid_capabilities = {
-#         "browserName": "chrome",
-#         "browserVersion": browser_version,
-#         "selenoid:options": {
-#             "enableVNC": True,
-#             "enableVideo": True
-#         }
-#     }
-#     options.capabilities.update(selenoid_capabilities)
-#
-#     driver = webdriver.Remote(
-#         command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
-#         options=options
-#     )
-#     browser = Browser(Config(driver))
-#
-#     yield browser
-#
-#     attach.add_html(browser)
-#     attach.add_screenshot(browser)
-#     attach.add_logs(browser)
-#     attach.add_video(browser)
-#     browser.quit()
+    yield
+    attach.add_video(browser)
+    attach.add_html(browser)
+    attach.add_screenshot(browser)
+    attach.add_logs(browser)
+    browser.quit()
