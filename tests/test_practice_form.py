@@ -12,7 +12,7 @@ form = PracticeForm()
 @allure.tag('user', 'ui', 'A.Chizh')
 @allure.severity(Severity.CRITICAL)
 @allure.id('1')
-def test_form_filling():
+def test_form_filling(setup_browser):
     andrew = Student(
         first_name='Andrew',
         last_name='Chizh',
