@@ -26,7 +26,6 @@ def test_form_filling():
         state='Uttar Pradesh',
         city='Merrut'
     )
-
     with allure.step('Open page'):
         form.open()
     with allure.step('Fill form'):
