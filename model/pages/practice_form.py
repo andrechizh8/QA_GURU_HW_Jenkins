@@ -11,7 +11,7 @@ class PracticeForm:
 
     def open(self):
         browser.open("/automation-practice-form")
-        browser.execute_script('document.querySelector(".body-height").style.transform = "scale(.6)"')
+        # browser.driver.execute_script('document.querySelector(".body-height").style.transform = "scale(.6)"')
         return self
 
     def fill_name(self, student):
