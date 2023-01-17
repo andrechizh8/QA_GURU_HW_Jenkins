@@ -10,7 +10,7 @@ from model.controls.datepicker import Datepicker
 class PracticeForm:
 
     def open(self):
-        browser.open("/automation-practice-form")
+        browser.open("https://demoqa.com/automation-practice-form")
         browser.driver.execute_script('document.querySelector(".body-height").style.transform = "scale(.6)"')
         return self
 
