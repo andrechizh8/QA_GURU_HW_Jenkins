@@ -1,3 +1,5 @@
+import time
+
 from model.pages.practice_form import PracticeForm
 from model.data.student import Student
 import allure
@@ -31,4 +33,5 @@ def test_form_filling():
     with allure.step('Fill form'):
         form.filling(andrew).click_submit()
     with allure.step('Assert info'):
-        form.assert_information(andrew).click_close_button()
+        form.assert_information(andrew)
+        time.sleep(1)

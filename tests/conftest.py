@@ -1,3 +1,5 @@
+import time
+
 import pytest
 import os
 from selene.support.shared import browser
@@ -9,20 +11,18 @@ from model.utils import attach
 
 @pytest.fixture(scope="function", autouse=True)
 def open_browser():
-    options = Options()
-    selenoid_capabilities = {
+    capabilities = {
         "browserName": "chrome",
         "browserVersion": "100.0",
         "selenoid:options": {
             "enableVNC": True,
-            "enableVideo": True
+            "enableVideo": False
         }
     }
-    options.capabilities.update(selenoid_capabilities)
     driver = webdriver.Remote(
-        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
-        options=options
-    )
+        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        desired_capabilities=capabilities)
+
     browser.config.driver = driver
 
     yield
