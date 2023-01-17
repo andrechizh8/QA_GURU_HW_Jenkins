@@ -56,7 +56,6 @@ def test_form_filling():
         form.filling(andrew).click_submit()
     with allure.step('Assert info'):
         form.assert_information(andrew)
-        time.sleep(1)
     attach.add_video(browser)
     attach.add_html(browser)
     attach.add_screenshot(browser)
