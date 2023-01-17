@@ -10,7 +10,7 @@ form = PracticeForm()
 @allure.tag('user', 'ui', 'A.Chizh')
 @allure.severity(Severity.CRITICAL)
 @allure.id('1')
-def test_form_filling(browser_config):
+def test_form_filling():
     andrew = Student(
         first_name='Andrew',
         last_name='Chizh',
@@ -31,4 +31,4 @@ def test_form_filling(browser_config):
     with allure.step('Fill form'):
         form.filling(andrew).click_submit()
     with allure.step('Assert info'):
-        form.assert_information(andrew)
+        form.assert_information(andrew).click_close_button()
