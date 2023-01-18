@@ -4,7 +4,6 @@ __pycache__/
 *$py.class
 
 #Allure
-/allure-results
 # C extensions
 *.so
 .idea/
