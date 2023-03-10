@@ -14,4 +14,4 @@ pytest --alluredir=allure-results tests
 allure.bat serve allure-results
 
 ---
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+![Image alt](https://github.com/andrechizh8/QA_GURU_HW_Jenkins/raw/main/resourses/allure-1.png)
